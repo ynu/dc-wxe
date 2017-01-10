@@ -17,7 +17,7 @@ export const signin = ({
     // 返回原URL。当redirect_uri中包含中文时，可能会出错，应该进行encode操作。
     res.redirect(encodeURI(req.signedCookies.redirect_uri));
   },
-  fail = (err, req, res) => res.send(fail),
+  fail = (err, req, res) => res.send(err),
 }) => async (req, res, next) => {
   try {
     const wxapi = new WxeApi(wxeApiOpitons);
@@ -54,8 +54,8 @@ export const signin = ({
         </html>
       `);
     }
-  } catch (msg) {
-    fail({ ret: -1, msg }, req, res, next);
+  } catch (e) {
+    fail({ ret: -1, msg: e.message }, req, res, next);
   }
 };
 
