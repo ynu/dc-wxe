@@ -63,16 +63,14 @@
 **Join** [#react-starter-kit](https://gitter.im/kriasoft/react-starter-kit) chat room to stay up to date &nbsp;|&nbsp;
 **Visit our sponsors**:<br><br>
 
-[![Rollbar - Full-stack error tracking for all apps in any language](https://dl.dropboxusercontent.com/u/16006521/react-starter-kit/rollbar.png)](https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)) &nbsp;&nbsp;
-[![Localize - Translate your web app in minutes](https://dl.dropboxusercontent.com/u/16006521/react-starter-kit/localize.png)](https://localizejs.com/?cid=802&utm_source=rsk)
+[![Rollbar - Full-stack error tracking for all apps in any language](https://koistya.github.io/files/rsk/rollbar.png)](https://rollbar.com/?utm_source=reactstartkit(github)&utm_medium=link&utm_campaign=reactstartkit(github)) &nbsp;&nbsp;
+[![Localize - Translate your web app in minutes](https://koistya.github.io/files/rsk/localize.png)](https://localizejs.com/?cid=802&utm_source=rsk)
 
 
 ### Getting Started
 
   * Follow the [getting started guide](./docs/getting-started.md) to download and run the project
-    ([node](https://nodejs.org/) >= 5,
-    **[node-gyp](https://github.com/nodejs/node-gyp#readme)**
-    and **[prerequisites](https://github.com/nodejs/node-gyp#installation)**)
+    ([Node.js](https://nodejs.org/) >= 6.5)
   * Check the [code recipes](./docs/recipes) used in this boilerplate, or share yours
 
 
@@ -249,6 +247,7 @@ requests](CONTRIBUTING.md#pull-requests).
 
 ### Related Projects
 
+  * [GraphQL Starter Kit](https://github.com/kriasoft/graphql-starter-kit) — Boilerplate for building data APIs with Node.js, JavaScript (via Babel) and GraphQL
   * [Membership Database](https://github.com/membership/membership.db) — SQL schema boilerplate for user accounts, profiles, roles, and auth claims
   * [Babel Starter Kit](https://github.com/kriasoft/babel-starter-kit) — Boilerplate for authoring JavaScript/React.js libraries
 
@@ -261,12 +260,18 @@ requests](CONTRIBUTING.md#pull-requests).
   * [appear.in/react](https://appear.in/react) — Open hours! Exchange ideas and experiences (React, GraphQL, startups and pet projects)
   * [@koistya](https://twitter.com/koistya) on [Codementor](https://www.codementor.io/koistya), or [Skype](http://hatscripts.com/addskype?koistya) — Private consulting
 
+
 ### License
 
-Copyright © 2014-2016 Kriasoft, LLC. This source code is licensed under the MIT
+Copyright © 2014-present Kriasoft, LLC. This source code is licensed under the MIT
 license found in the [LICENSE.txt](https://github.com/kriasoft/react-starter-kit/blob/master/LICENSE.txt)
 file. The documentation to the project is licensed under the
 [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
 
 ---
 Made with ♥ by Konstantin Tarkus ([@koistya](https://twitter.com/koistya)) and [contributors](https://github.com/kriasoft/react-starter-kit/graphs/contributors)
+
+[rsk]: https://www.reactstarterkit.com
+[demo]: http://demo.reactstarterkit.com
+[node]: https://nodejs.org
+[chat]: https://gitter.im/kriasoft/react-starter-kit
