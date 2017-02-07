@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+import Layout from '../../components/Layout';
 
 const title = 'Admin Page';
 const isAdmin = false;
@@ -21,14 +22,12 @@ export default {
       return { redirect: '/login' };
     }
 
-    const Admin = await new Promise((resolve) => {
-      require.ensure([], (require) => resolve(require('./Admin').default), 'admin');
-    });
+    const Admin = await require.ensure([], require => require('./Admin').default, 'admin');
 
     return {
       title,
       chunk: 'admin',
-      component: <Admin title={title} />,
+      component: <Layout><Admin title={title} /></Layout>,
     };
   },
 

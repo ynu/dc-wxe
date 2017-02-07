@@ -27,7 +27,7 @@ import passport from './core/passport';
 import models from './data/models';
 import schema from './data/schema';
 import routes from './routes';
-import assets from './assets'; // eslint-disable-line import/no-unresolved
+import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { port, auth } from './config';
@@ -59,8 +59,11 @@ app.use(expressJwt({
 }));
 app.use(passport.initialize());
 
+if (process.env.NODE_ENV !== 'production') {
+  app.enable('trust proxy');
+}
 app.get('/login/facebook',
-  passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false })
+  passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false }),
 );
 app.get('/login/facebook/return',
   passport.authenticate('facebook', { failureRedirect: '/login', session: false }),
@@ -69,7 +72,7 @@ app.get('/login/facebook/return',
     const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
     res.redirect('/');
-  }
+  },
 );
 
 //
@@ -77,7 +80,7 @@ app.get('/login/facebook/return',
 // -----------------------------------------------------------------------------
 app.use('/graphql', expressGraphQL(req => ({
   schema,
-  graphiql: true,
+  graphiql: process.env.NODE_ENV !== 'production',
   rootValue: { request: req },
   pretty: process.env.NODE_ENV !== 'production',
 })));
@@ -128,11 +131,16 @@ app.get('*', async (req, res, next) => {
     const data = { ...route };
     data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
     data.style = [...css].join('');
-    data.script = assets.main.js;
+    data.scripts = [
+      assets.vendor.js,
+      assets.client.js,
+    ];
     data.state = context.store.getState();
-    data.chunk = assets[route.chunk] && assets[route.chunk].js;
-    const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
+    if (assets[route.chunk]) {
+      data.scripts.push(assets[route.chunk].js);
+    }
 
+    const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
     res.status(route.status || 200);
     res.send(`<!doctype html>${html}`);
   } catch (err) {
@@ -156,7 +164,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
       style={errorPageStyle._getCss()} // eslint-disable-line no-underscore-dangle
     >
       {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}
-    </Html>
+    </Html>,
   );
   res.status(err.status || 500);
   res.send(`<!doctype html>${html}`);

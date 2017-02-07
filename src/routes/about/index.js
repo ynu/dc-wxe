@@ -9,18 +9,18 @@
 
 import React from 'react';
 import Layout from '../../components/Layout';
-import Contact from './Contact';
-
-const title = 'Contact Us';
+import Page from '../../components/Page';
 
 export default {
 
-  path: '/contact',
+  path: '/about',
 
-  action() {
+  async action() {
+    const data = await require.ensure([], require => require('./about.md'), 'about');
+
     return {
-      title,
-      component: <Layout><Contact title={title} /></Layout>,
+      title: data.title,
+      component: <Layout><Page {...data} /></Layout>,
     };
   },
 
