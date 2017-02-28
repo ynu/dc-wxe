@@ -1,0 +1,19 @@
+{
+  "name": "dc-wxe",
+  "version": "1.0.0",
+  "description": "以微信企业号实现的数据中心应用系统",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ynu/dc-wxe.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ynu/dc-wxe/issues"
+  },
+  "homepage": "https://github.com/ynu/dc-wxe#readme"
+}
