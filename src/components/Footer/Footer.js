@@ -1,0 +1,16 @@
+import React from 'react';
+
+class Footer extends React.Component {
+  render() {
+    return (
+      <div className="weui-footer" style={{ marginTop: '10px' }}>
+        <p className="weui-footer__links">
+          <a href="http://www.itc.ynu.edu.cn" className="weui-footer__link">信息技术中心</a>
+        </p>
+        <p className="weui-footer__text">Copyright © 2016-{(new Date()).getFullYear()} 云南大学</p>
+      </div>
+    );
+  }
+}
+
+export default Footer;
