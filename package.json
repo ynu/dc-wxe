@@ -6,9 +6,14 @@
     "node": ">=6.5",
     "npm": ">=3.10"
   },
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9"
+  ],
   "dependencies": {
     "babel-polyfill": "^6.22.0",
-    "babel-runtime": "^6.22.0",
     "bluebird": "^3.4.7",
     "body-parser": "^1.16.0",
     "classnames": "^2.2.5",
@@ -51,11 +56,10 @@
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-rewire": "^1.0.0",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-latest": "^6.22.0",
+    "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.22.0",
     "babel-preset-react-optimize": "^1.0.1",
-    "babel-preset-stage-0": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "babel-template": "^6.22.0",
     "babel-types": "^6.22.0",
@@ -72,10 +76,8 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
-    "extend": "^3.0.0",
     "file-loader": "^0.10.0",
     "front-matter": "^2.1.2",
-    "git-repository": "^0.1.4",
     "glob": "^7.1.1",
     "json-loader": "^0.5.4",
     "lint-staged": "^3.3.0",
@@ -114,24 +116,23 @@
     "stylelint-config-standard": "^16.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
+    "webpack-bundle-analyzer": "^2.3.0",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
     "write-file-webpack-plugin": "^3.4.2"
   },
   "babel": {
     "presets": [
-      "react",
-      "stage-0"
-    ],
-    "plugins": [
-      "syntax-trailing-function-commas",
-      "transform-async-to-generator",
-      "transform-es2015-destructuring",
-      "transform-es2015-parameters",
-      "transform-es2015-duplicate-keys",
-      "transform-es2015-modules-commonjs",
-      "transform-exponentiation-operator",
-      "transform-runtime"
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "stage-2",
+      "react"
     ],
     "env": {
       "test": {
@@ -157,17 +158,10 @@
       "browser": true
     },
     "rules": {
-      "arrow-parens": "off",
-      "generator-star-spacing": "off",
       "import/extensions": "off",
       "import/no-extraneous-dependencies": "off",
-      "react/forbid-prop-types": "off",
       "react/jsx-filename-extension": "off",
-      "react/no-array-index-key": "off",
-      "react/no-danger": "off",
-      "react/no-unused-prop-types": "off",
-      "react/prefer-stateless-function": "off",
-      "react/require-default-props": "off"
+      "react/prefer-stateless-function": "off"
     }
   },
   "stylelint": {
@@ -192,22 +186,6 @@
       ]
     }
   },
-  "pre-commit": "lint:staged",
-  "lint-staged": {
-    "*.{md,sh,txt,xml,html,json}": [
-      "editorconfig-tools fix",
-      "git add"
-    ],
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{css,less,scss,sss}": [
-      "stylefmt",
-      "stylelint",
-      "git add"
-    ]
-  },
   "scripts": {
     "lint:js": "eslint src tools",
     "lint:css": "stylelint \"src/**/*.{css,less,scss,sss}\"",
@@ -219,7 +197,8 @@
     "copy": "babel-node tools/run copy",
     "bundle": "babel-node tools/run bundle",
     "build": "babel-node tools/run build",
-    "deploy": "babel-node tools/run deployToAzureWebApps",
+    "build:stats": "yarn run build -- --release --analyse",
+    "deploy": "babel-node tools/run deploy",
     "render": "babel-node tools/run render",
     "serve": "babel-node tools/run runServer",
     "start": "babel-node tools/run start"
