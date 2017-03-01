@@ -4,7 +4,6 @@ ADD package.json /rsk/
 ADD LICENSE.txt /rsk/
 ADD src /rsk/src
 ADD tools /rsk/tools
-ADD ssl /rsk/ssl
 WORKDIR /rsk
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
