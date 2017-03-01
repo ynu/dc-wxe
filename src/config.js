@@ -8,6 +8,7 @@
  */
 
 /* eslint-disable max-len */
+import debug from 'debug';
 
 export const port = process.env.PORT || 3000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
@@ -45,4 +46,21 @@ export const auth = {
     secret: process.env.TWITTER_CONSUMER_SECRET || 'KTZ6cxoKnEakQCeSpZlaUCJWGAlTEBJj0y2EMkUBujA7zWSvaQ',
   },
 
+  // 微信企业号
+  wxent: {
+    corpId: process.env.WXE_CORPID,
+    secret: process.env.WXE_SECRET,
+    agentId: process.env.WXE_AGENTID || 28,
+  },
+
+  // lb-api token
+  lbApiToken: process.env.LB_API_TOKEN,
+
 };
+
+// debug
+export const error = debug('dc-wxe:error');
+export const info = debug('dc-wxe:info');
+
+// ecard-api
+export const lbApiHost = process.env.LB_API_HOST || 'https://api.ynu.edu.cn/tsg-lb/v1';
