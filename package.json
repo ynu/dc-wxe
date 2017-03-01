@@ -49,6 +49,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
+    "react-weui": "alpha",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
@@ -198,6 +199,7 @@
       ]
     }
   },
+  "pre-commit": [],
   "scripts": {
     "lint:js": "eslint src tools",
     "lint:css": "stylelint \"src/**/*.{css,less,scss,sss}\"",
