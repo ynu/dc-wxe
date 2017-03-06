@@ -3,6 +3,7 @@ FROM node:7
 ADD package.json /rsk/
 ADD LICENSE.txt /rsk/
 ADD src /rsk/src
+ADD public /rsk/public
 ADD tools /rsk/tools
 WORKDIR /rsk
 
