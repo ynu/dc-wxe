@@ -10,7 +10,7 @@ import cacheProxy from './memory-cache-proxy';
 const getCacheOptions = (args, name) => {
   const TEN_MINUTES = 10 * 60 * 1000;
   let cacheOptions = {
-    key: `dc-wxe:tsg-lb:device:${name}`,
+    key: `dc-wxe:tsg-lb:${name}`,
     expire: TEN_MINUTES,
   };
   if (args.length) {
@@ -35,3 +35,12 @@ export const fan = (...args) =>
 
 export const environment = (...args) =>
   cacheProxy(model.environment, getCacheOptions(args, 'environment'), args.slice(0, -1));
+
+export const realServers = (...args) =>
+  cacheProxy(model.realServers, getCacheOptions(args, 'realServers'), []);
+
+export const serverFarms = (...args) =>
+  cacheProxy(model.serverFarms, getCacheOptions(args, 'serverFarms'), []);
+
+export const virtualServers = (...args) =>
+    cacheProxy(model.virtualServers, getCacheOptions(args, 'virtualServers'), []);
