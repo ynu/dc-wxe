@@ -5,6 +5,7 @@ import Container from '../../../components/Weui/Container';
 import Footer from '../../../components/Footer';
 import EnsureSignupWxe from '../../../components/WeChat/EnsureSignupWxe';
 import Device from './Device';
+import ServerLb from './ServerLb';
 import * as lbActions from '../../../actions/lb/dashboard';
 
 class DashBoard extends React.Component {
@@ -20,6 +21,7 @@ class DashBoard extends React.Component {
         </div>
         <div className="page__bd">
           <Device device={dashboard} />
+          <ServerLb serverLb={dashboard} />
         </div>
         <Footer />
         <Toast show={toast.loading} icon="loading">加载中</Toast>

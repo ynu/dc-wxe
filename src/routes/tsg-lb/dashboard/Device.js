@@ -33,27 +33,22 @@ const Device = ({ device }) => {
         <Cell href={'/tsg-lb/device/cpuUsage'} access>
           <CellBody>
               电源
-              <Badge preset="body">{powers.length}</Badge>
           </CellBody>
           <CellFooter>
-
+            {powers.Normal} / {powers.total}
             {
-              powers.every(p => p.status === 'Normal')
-              ? <Icon value="success" />
-              : <Icon value="warn" />
+              powers.Normal === powers.total ? <Icon value="success" /> : <Icon value="warn" />
             }
           </CellFooter>
         </Cell>
         <Cell href={'/tsg-lb/device/cpuUsage'} access>
           <CellBody>
               风扇
-              <Badge preset="body">{fans.length}</Badge>
           </CellBody>
           <CellFooter>
+            {fans.Normal} / {fans.total}
             {
-              fans.every(f => f.status === 'Normal')
-              ? <Icon value="success" />
-              : <Icon value="warn" />
+              fans.Normal === fans.total ? <Icon value="success" /> : <Icon value="warn" />
             }
           </CellFooter>
         </Cell>

@@ -1,4 +1,8 @@
-import { auth, getShopTag, error, info } from '../../config';
+/*
+eslint-disable no-param-reassign, no-plusplus
+ */
+
+import { error, info } from '../../config';
 import { SERVER_FAILED } from 'nagu-validates';
 import * as lbModel from '../models/cachedLb';
 
@@ -32,15 +36,42 @@ export const dashboard = (options = {}) => async (req, res, next) => {
       lbModel.power(),
       lbModel.fan(),
       lbModel.environment(),
+      lbModel.realServers(),
+      lbModel.serverFarms(),
+      lbModel.virtualServers(),
+
     ];
 
     const result = await Promise.all(promises);
+
     const data = {
       cpus: result[0].cpus,
       memory: result[1].memory,
-      powers: result[2].powers,
-      fans: result[3].fans,
+      powers: result[2].powers.reduce((acc, cur) => {
+        if (!acc[cur.status]) acc[cur.status] = 0;
+        acc[cur.status]++;
+        return acc;
+      }, { total: result[2].powers.length }),
+      fans: result[3].fans.reduce((acc, cur) => {
+        if (!acc[cur.status]) acc[cur.status] = 0;
+        acc[cur.status]++;
+        return acc;
+      }, { total: result[3].fans.length }),
       environment: result[4],
+      realServers: result[5].reduce((acc, cur) => {
+        if (!acc[cur.state]) acc[cur.state] = 0;
+        acc[cur.state]++;
+        return acc;
+      }, { total: result[5].length }),
+      serverFarms: result[6].reduce((acc, cur) => {
+        cur.activeRealServer ? acc.Active++ : acc.Inactive++;
+        return acc;
+      }, { Active: 0, Inactive: 0, total: result[6].length }),
+      virtualServers: result[7].reduce((acc, cur) => {
+        if (!acc[cur.state]) acc[cur.state] = 0;
+        acc[cur.state]++;
+        return acc;
+      }, { total: result[7].length }),
     };
     success(data, req, res, next);
   } catch (e) {
