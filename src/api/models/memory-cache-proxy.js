@@ -22,8 +22,8 @@ export default async (func, cacheOptions, args) => {
   try {
     let data = cache.get(cacheOptions.key);
 
-    // 缓存中没有数据，从func获取
-    if (!data) {
+    // 强制刷新或缓存中没有数据，从func获取
+    if (cacheOptions.forceFlush || !data) {
       info(`${func.name} get data from cache failed. cacheKey:`, cacheOptions.key);
 
       data = await func(...args);
