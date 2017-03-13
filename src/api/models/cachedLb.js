@@ -44,3 +44,12 @@ export const serverFarms = (...args) =>
 
 export const virtualServers = (...args) =>
     cacheProxy(model.virtualServers, getCacheOptions(args, 'virtualServers'), []);
+
+export const interfaces = (...args) =>
+    cacheProxy(model.interfaces, getCacheOptions(args, 'interfaces'), []);
+
+export const inboundCounter = (...args) =>
+    cacheProxy(model.inboundCounter, getCacheOptions(args, 'inboundCounter'), []);
+
+export const outboundCounter = (...args) =>
+    cacheProxy(model.outboundCounter, getCacheOptions(args, 'outboundCounter'), []);

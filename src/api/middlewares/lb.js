@@ -39,7 +39,9 @@ export const dashboard = (options = {}) => async (req, res, next) => {
       lbModel.realServers(),
       lbModel.serverFarms(),
       lbModel.virtualServers(),
-
+      lbModel.interfaces(),
+      lbModel.inboundCounter(),
+      lbModel.outboundCounter(),
     ];
 
     const result = await Promise.all(promises);
@@ -72,6 +74,26 @@ export const dashboard = (options = {}) => async (req, res, next) => {
         acc[cur.state]++;
         return acc;
       }, { total: result[7].length }),
+      interfaces: {
+        ge: result[8].ge.reduce((acc, cur) => {
+          if (!acc[cur.link]) acc[cur.link] = 0;
+          acc[cur.link]++;
+          return acc;
+        }, {}),
+        xge: result[8].xge.reduce((acc, cur) => {
+          if (!acc[cur.link]) acc[cur.link] = 0;
+          acc[cur.link]++;
+          return acc;
+        }, {}),
+      },
+      inboundCounter: [
+        ...result[9].ge,
+        ...result[9].xge,
+      ].reduce((acc, cur) => acc + cur.total, 0),
+      outboundCounter: [
+        ...result[10].ge,
+        ...result[10].xge,
+      ].reduce((acc, cur) => acc + cur.total, 0),
     };
     success(data, req, res, next);
   } catch (e) {

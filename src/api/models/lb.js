@@ -144,3 +144,54 @@ export const virtualServers = async () => {
     return null;
   }
 };
+
+/*
+获取网络接口信息
+ */
+export const interfaces = async () => {
+  const url = `${lbApiHost}/interface?token=${auth.lbApiToken}`;
+  info('Fetch interfaces from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.ret === 0) return result.data;
+    throw new Error(result);
+  } catch (e) {
+    error('远程获取interface信息失败', e.message);
+    return null;
+  }
+};
+
+/*
+获取网络接口入流量信息
+ */
+export const inboundCounter = async () => {
+  const url = `${lbApiHost}/interface/counters/inbound?token=${auth.lbApiToken}`;
+  info('Fetch inbound counter from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.ret === 0) return result.data;
+    throw new Error(result);
+  } catch (e) {
+    error('远程获取counters/inbound信息失败', e.message);
+    return null;
+  }
+};
+
+/*
+获取网络接口入流量信息
+ */
+export const outboundCounter = async () => {
+  const url = `${lbApiHost}/interface/counters/outbound?token=${auth.lbApiToken}`;
+  info('Fetch inbound counter from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.ret === 0) return result.data;
+    throw new Error(result);
+  } catch (e) {
+    error('远程获取counters/outbound信息失败', e.message);
+    return null;
+  }
+};
