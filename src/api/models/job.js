@@ -4,11 +4,15 @@
  */
 
 import * as model from './cachedLb';
-import { info, error } from '../../config';
+import { info, error, autoFetchInterval } from '../../config';
 
 const functions = Object.entries(model);
 const flushData = (index, args = []) => {
   index %= functions.length;
+  if (index === 0) {
+    console.timeEnd('自动化缓存数据');
+    console.time('自动化缓存数据');
+  }
   const func = functions[index][1];
   const funcName = functions[index][0];
   info('start to flush data:', funcName);
@@ -20,7 +24,7 @@ const flushData = (index, args = []) => {
     }
     info('flush data is done:', funcName);
     flushData(index + 1, { forceFlush: true });
-  }, 10 * 1000);
+  }, autoFetchInterval);
 };
 
 flushData(0, { forceFlush: true });

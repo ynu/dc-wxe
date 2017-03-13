@@ -64,3 +64,5 @@ export const info = debug('dc-wxe:info');
 
 // ecard-api
 export const lbApiHost = process.env.LB_API_HOST || 'https://api.ynu.edu.cn/tsg-lb/v1';
+
+export const autoFetchInterval = parseInt(process.env.AUTO_FETCH_INTERVAL, 10) || 1000;
