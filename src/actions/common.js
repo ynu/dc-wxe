@@ -14,9 +14,10 @@ export const fetching = (data = null) => ({
   data: data || '',
 });
 
-export const fetchDone = data => ({
+export const fetchDone = (data, tag) => ({
   type: FETCH_DONE,
   data: data || '',
+  tag,
 });
 
 export const reset = () => ({

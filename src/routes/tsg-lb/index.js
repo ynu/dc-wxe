@@ -5,5 +5,6 @@ export default {
 
   children: [
     require('./dashboard').default,
+    require('./server-lb').default,
   ],
 };

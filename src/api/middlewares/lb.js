@@ -1,5 +1,5 @@
 /*
-eslint-disable no-param-reassign, no-plusplus
+eslint-disable no-param-reassign, no-plusplus, no-shadow
  */
 
 import { error, info } from '../../config';
@@ -12,13 +12,11 @@ dashboard({ cacheOptions, success, fail })
 
 
 - 参数
-  - cacheOptions 缓存选项
-    - expire 缓存时间，单位为ms，默认为10分钟；
   - success 执行成功时的回调，默认将获取到的数据设置到`req.dashboard`然后转向下一个中间件；
   - fail 执行失败时的回调，默认向客户端返回错误信息。
  */
 export const dashboard = (options = {}) => async (req, res, next) => {
-  let { cacheOptions, success, fail } = options;
+  let { success, fail } = options;
 
   success = success || ((data, req, res, next) => {
     res.dashboard = data;
@@ -97,6 +95,78 @@ export const dashboard = (options = {}) => async (req, res, next) => {
     };
     success(data, req, res, next);
   } catch (e) {
+    fail(e, req, res, next);
+  }
+};
+
+/*
+virtualServers({ success, fail })
+获取虚服务列表
+ */
+export const virtualServers = (options = {}) => async (req, res, next) => {
+  let { success, fail } = options;
+
+  success = success || ((data, req, res, next) => {
+    res.virtualServers = data;
+    next();
+  });
+  fail = fail || ((e, req, res) => res.send({
+    ret: SERVER_FAILED,
+    msg: e.message,
+  }));
+  try {
+    const data = await lbModel.virtualServers();
+    success(data, req, res, next);
+  } catch (e) {
+    error('virtualServers中间件异常', e.message);
+    fail(e, req, res, next);
+  }
+};
+
+/*
+serverFarms({ success, fail })
+获取虚服务列表
+ */
+export const serverFarms = (options = {}) => async (req, res, next) => {
+  let { success, fail } = options;
+
+  success = success || ((data, req, res, next) => {
+    res.serverFarms = data;
+    next();
+  });
+  fail = fail || ((e, req, res) => res.send({
+    ret: SERVER_FAILED,
+    msg: e.message,
+  }));
+  try {
+    const data = await lbModel.serverFarms();
+    success(data, req, res, next);
+  } catch (e) {
+    error('serverFarms中间件异常', e.message);
+    fail(e, req, res, next);
+  }
+};
+
+/*
+realServers({ success, fail })
+获取虚服务列表
+ */
+export const realServers = (options = {}) => async (req, res, next) => {
+  let { success, fail } = options;
+
+  success = success || ((data, req, res, next) => {
+    res.realServers = data;
+    next();
+  });
+  fail = fail || ((e, req, res) => res.send({
+    ret: SERVER_FAILED,
+    msg: e.message,
+  }));
+  try {
+    const data = await lbModel.realServers();
+    success(data, req, res, next);
+  } catch (e) {
+    error('realServers中间件异常', e.message);
     fail(e, req, res, next);
   }
 };

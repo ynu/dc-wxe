@@ -10,7 +10,7 @@ const ServerLb = ({ serverLb }) => {
     <div>
       <CellsTitle>服务器负载均衡</CellsTitle>
       <Cells>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell href={'/tsg-lb/server-lb/virtual-servers'} access>
           <CellBody>
               虚服务
           </CellBody>
@@ -21,7 +21,7 @@ const ServerLb = ({ serverLb }) => {
             }
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell href={'/tsg-lb/server-lb/server-farms'} access>
           <CellBody>
               实服务组
           </CellBody>
@@ -32,7 +32,7 @@ const ServerLb = ({ serverLb }) => {
             }
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell href={'/tsg-lb/server-lb/real-servers'} access>
           <CellBody>
               实服务器
           </CellBody>

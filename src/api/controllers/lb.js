@@ -18,16 +18,8 @@ router.get('/dashboard',
   //   credentialsRequired: true,
   //   getToken: wxeAuth.getToken,
   // }),
-  (req, res, next) => {
-    console.time('运行时间');
-    next();
-  },
   // 获取数据
   middleware.dashboard(),
-  (req, res, next) => {
-    console.timeEnd('运行时间');
-    next();
-  },
   // 返回结果
   async (req, res) => res.json({
     ret: SUCCESS,
@@ -35,4 +27,51 @@ router.get('/dashboard',
   }),
 );
 
+router.get('/server-lb/virtual-servers',
+  // 确保用户已登录
+  // expressJwt({
+  //   secret: auth.jwt.secret,
+  //   credentialsRequired: true,
+  //   getToken: wxeAuth.getToken,
+  // }),
+  // 获取数据
+  middleware.virtualServers(),
+  // 返回结果
+  async (req, res) => res.json({
+    ret: SUCCESS,
+    data: res.virtualServers,
+  }),
+);
+
+router.get('/server-lb/server-farms',
+  // 确保用户已登录
+  // expressJwt({
+  //   secret: auth.jwt.secret,
+  //   credentialsRequired: true,
+  //   getToken: wxeAuth.getToken,
+  // }),
+  // 获取数据
+  middleware.serverFarms(),
+  // 返回结果
+  async (req, res) => res.json({
+    ret: SUCCESS,
+    data: res.serverFarms,
+  }),
+);
+
+router.get('/server-lb/real-servers',
+  // 确保用户已登录
+  // expressJwt({
+  //   secret: auth.jwt.secret,
+  //   credentialsRequired: true,
+  //   getToken: wxeAuth.getToken,
+  // }),
+  // 获取数据
+  middleware.realServers(),
+  // 返回结果
+  async (req, res) => res.json({
+    ret: SUCCESS,
+    data: res.realServers,
+  }),
+);
 export default router;

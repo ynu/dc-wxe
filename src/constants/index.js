@@ -1,3 +1,11 @@
 /* eslint-disable import/prefer-default-export */
 
 export const SET_RUNTIME_VARIABLE = 'SET_RUNTIME_VARIABLE';
+
+export const FETCHED_VIRTUAL_SERVERS = 'FETCHED_VIRTUAL_SERVERS';
+
+export const FETCHED_SERVER_FARMS = 'FETCHED_SERVER_FARMS';
+
+export const FETCHED_REAL_SERVERS = 'FETCHED_REAL_SERVERS';
+
+export const FETCHED_DASHBOARD = 'FETCHED_DASHBOARD';
