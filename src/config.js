@@ -62,7 +62,11 @@ export const auth = {
 export const error = debug('dc-wxe:error');
 export const info = debug('dc-wxe:info');
 
-// ecard-api
+// lb-api
 export const lbApiHost = process.env.LB_API_HOST || 'https://api.ynu.edu.cn/tsg-lb/v1';
 
 export const autoFetchInterval = parseInt(process.env.AUTO_FETCH_INTERVAL, 10) || 1000;
+
+export const lbSupervisorTag = process.env.LB_SUPERVISOR_TAG_ID || 53;
+
+export const dailyReportCron = process.env.DAILY_REPORT_CRON || '* * 7 * * *';
