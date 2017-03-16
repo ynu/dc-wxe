@@ -69,4 +69,4 @@ export const autoFetchInterval = parseInt(process.env.AUTO_FETCH_INTERVAL, 10) |
 
 export const lbSupervisorTag = process.env.LB_SUPERVISOR_TAG_ID || 53;
 
-export const dailyReportCron = process.env.DAILY_REPORT_CRON || '* * 7 * * *';
+export const dailyReportCron = process.env.DAILY_REPORT_CRON || '0 0 7 * * *';

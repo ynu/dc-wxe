@@ -7,7 +7,6 @@ import EnsureSignupWxe from '../../../components/WeChat/EnsureSignupWxe';
 import Device from './Device';
 import ServerLb from './ServerLb';
 import Interface from './Interface';
-
 import * as lbActions from '../../../actions/lb/dashboard';
 
 class DashBoard extends React.Component {
