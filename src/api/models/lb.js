@@ -99,7 +99,7 @@ export const realServers = async () => {
     throw new Error(result);
   } catch (e) {
     error('远程获取real-server信息失败', e.message);
-    return null;
+    return [];
   }
 };
 
@@ -116,7 +116,7 @@ export const serverFarms = async () => {
     throw new Error(result);
   } catch (e) {
     error('远程获取server-farm信息失败', e.message);
-    return null;
+    return [];
   }
 };
 
@@ -128,13 +128,12 @@ export const virtualServers = async () => {
   info('Read Fetch virtual-server from Url:', url);
   try {
     const res = await fetch(url);
-    console.log('#######', await res.text());
     const result = await res.json();
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
     error('远程获取virtual-server信息失败', e.message);
-    return null;
+    return [];
   }
 };
 
