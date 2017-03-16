@@ -13,10 +13,22 @@ class Site extends React.Component {
           <h1 className="page__title">site</h1>
         </div>
         <div className="page__bd">
-          <CellsTitle>集群列表(1)</CellsTitle>
+          <CellsTitle>集群列表(4)</CellsTitle>
           <Cells>
             <Cell href={'/fc/cluster/siteUri/clusterUri'} access>
               <CellBody>ManagementCluster</CellBody>
+              <CellFooter />
+            </Cell>
+            <Cell href={'/fc/cluster/siteUri/clusterUri'} access>
+              <CellBody>测试</CellBody>
+              <CellFooter />
+            </Cell>
+            <Cell href={'/fc/cluster/siteUri/clusterUri'} access>
+              <CellBody>托管</CellBody>
+              <CellFooter />
+            </Cell>
+            <Cell href={'/fc/cluster/siteUri/clusterUri'} access>
+              <CellBody>生产</CellBody>
               <CellFooter />
             </Cell>
           </Cells>

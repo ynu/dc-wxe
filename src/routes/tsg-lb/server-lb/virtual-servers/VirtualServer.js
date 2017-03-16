@@ -21,9 +21,9 @@ const VirtualServer = (props) => {
             )
           }
           {
-            primaryServerFarm && (
+            primaryServerFarm && realServers && (
               <div className="weui-form-preview__item">
-                <label className="weui-form-preview__label">实服务组</label>
+                <label className="weui-form-preview__label">实服务器</label>
                 {
                   <ul>
                     {
@@ -31,7 +31,7 @@ const VirtualServer = (props) => {
                         <li key={rs.name}>
                           <a href="#">
                             <em className="weui-form-preview__value">
-                              {rs.name}
+                              {rs.address.v4 || rs.address.v6}:{rs.port}
                               {
                                 rs.state === 'Active' ? <Icon value="success" /> : <Icon value="warn" />
                               }
