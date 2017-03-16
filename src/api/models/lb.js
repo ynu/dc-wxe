@@ -13,8 +13,7 @@ export const cpuUsage = async () => {
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
-    error(e.message);
-    error(e.stack);
+    error('远程获取cpu-usage信息失败', e.message);
     return null;
   }
 };
@@ -31,8 +30,7 @@ export const memory = async () => {
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
-    error(e.message);
-    error(e.stack);
+    error('远程获取memory信息失败', e.message);
     return null;
   }
 };
@@ -49,8 +47,7 @@ export const power = async () => {
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
-    error(e.message);
-    error(e.stack);
+    error('远程获取power信息失败', e.message);
     return null;
   }
 };
@@ -67,8 +64,7 @@ export const fan = async () => {
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
-    error(e.message);
-    error(e.stack);
+    error('远程获取fan信息失败', e.message);
     return null;
   }
 };
@@ -85,8 +81,7 @@ export const environment = async () => {
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
-    error(e.message);
-    error(e.stack);
+    error('远程获取environment信息失败', e.message);
     return null;
   }
 };
@@ -103,8 +98,7 @@ export const realServers = async () => {
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
-    error(e.message);
-    error(e.stack);
+    error('远程获取real-server信息失败', e.message);
     return null;
   }
 };
@@ -121,8 +115,7 @@ export const serverFarms = async () => {
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
-    error(e.message);
-    error(e.stack);
+    error('远程获取server-farm信息失败', e.message);
     return null;
   }
 };
@@ -135,12 +128,12 @@ export const virtualServers = async () => {
   info('Read Fetch virtual-server from Url:', url);
   try {
     const res = await fetch(url);
+    console.log('#######', await res.text());
     const result = await res.json();
     if (result.ret === 0) return result.data;
     throw new Error(result);
   } catch (e) {
-    error(e.message);
-    error(e.stack);
+    error('远程获取virtual-server信息失败', e.message);
     return null;
   }
 };
@@ -192,6 +185,57 @@ export const outboundCounter = async () => {
     throw new Error(result);
   } catch (e) {
     error('远程获取counters/outbound信息失败', e.message);
+    return null;
+  }
+};
+
+/*
+获取负载均衡策略信息
+ */
+export const lbPolicy = async () => {
+  const url = `${lbApiHost}/server-lb/lb-policy?token=${auth.lbApiToken}`;
+  info('Fetch LB policy from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.ret === 0) return result.data;
+    throw new Error(result);
+  } catch (e) {
+    error('远程获取LB policy信息失败', e.message);
+    return null;
+  }
+};
+
+/*
+获取负载均衡策略信息
+ */
+export const lbClass = async () => {
+  const url = `${lbApiHost}/server-lb/lb-class?token=${auth.lbApiToken}`;
+  info('Fetch LB class from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.ret === 0) return result.data;
+    throw new Error(result);
+  } catch (e) {
+    error('远程获取LB class信息失败', e.message);
+    return null;
+  }
+};
+
+/*
+获取负载均衡策略信息
+ */
+export const lbAction = async () => {
+  const url = `${lbApiHost}/server-lb/lb-action?token=${auth.lbApiToken}`;
+  info('Fetch LB action from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.ret === 0) return result.data;
+    throw new Error(result);
+  } catch (e) {
+    error('远程获取LB action信息失败', e.message);
     return null;
   }
 };

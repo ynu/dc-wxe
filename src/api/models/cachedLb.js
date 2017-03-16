@@ -53,3 +53,10 @@ export const inboundCounter = (...args) =>
 
 export const outboundCounter = (...args) =>
     cacheProxy(model.outboundCounter, getCacheOptions(args, 'outboundCounter'), []);
+
+export const lbPolicy = (...args) =>
+    cacheProxy(model.lbPolicy, getCacheOptions(args, 'lbPolicy'), []);
+export const lbClass = (...args) =>
+    cacheProxy(model.lbClass, getCacheOptions(args, 'lbClass'), []);
+export const lbAction = (...args) =>
+    cacheProxy(model.lbAction, getCacheOptions(args, 'lbAction'), []);
