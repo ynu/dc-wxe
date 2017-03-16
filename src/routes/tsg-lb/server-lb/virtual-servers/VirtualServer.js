@@ -1,63 +1,53 @@
 import React, { PropTypes } from 'react';
-import { Icon, CellsTitle, Cells, CellFooter, CellBody, Cell, CellsTips } from 'react-weui';
+import { Icon, Preview, PreviewHeader, PreviewBody, PreviewItem } from 'react-weui';
 
 const VirtualServer = (props) => {
   const { name, address, port, lbPolicy, primaryServerFarm, description, state, realServers, serverFarm } = props;
   return (
     <div>
-      <CellsTitle>{name}</CellsTitle>
-      <Cells>
-        <Cell>
-          <CellBody>IP</CellBody>
-          <CellFooter>{address.v4 || address.v6}</CellFooter>
-        </Cell>
-        <Cell>
-          <CellBody>端口</CellBody>
-          <CellFooter>{port}</CellFooter>
-        </Cell>
-        {
-          lbPolicy && (
-            <Cell>
-              <CellBody>LB策略</CellBody>
-              <CellFooter>{lbPolicy}</CellFooter>
-            </Cell>
-          )
-        }
-        {
-          primaryServerFarm && serverFarm && (
-            <Cell>
-              <CellBody>实服务组</CellBody>
-              <CellFooter>
-                {primaryServerFarm}({serverFarm.activeRealServer}/{serverFarm.totalRealServer})
-              </CellFooter>
-            </Cell>
-          )
-        }
-        {
-          primaryServerFarm && (
-            <Cell>
-              <CellBody>
-                  实服务器
-              </CellBody>
-              <CellFooter>
-                <ul>
-                  {
-                    realServers.map(rs => (
-                      <li key={rs.name}>
-                        <a href="#">{rs.name}</a>
-                        {
-                          rs.state === 'Active' ? <Icon value="success" /> : <Icon value="warn" />
-                        }
-                      </li>
-                    ))
-                  }
-                </ul>
-              </CellFooter>
-            </Cell>
-          )
-        }
-      </Cells>
-      <CellsTips>{description}</CellsTips>
+      <Preview>
+        <PreviewHeader>
+          <PreviewItem label="名称" value={name} />
+        </PreviewHeader>
+        <PreviewBody>
+          <PreviewItem label="IP" value={address.v4 || address.v6} />
+          <PreviewItem label="端口" value={port} />
+          {
+            lbPolicy && <PreviewItem label="LB 策略" value={lbPolicy} />
+          }
+          {
+            primaryServerFarm && serverFarm && (
+              <PreviewItem label="实服务组" value={`${serverFarm.activeRealServer}/${serverFarm.totalRealServer}`} />
+            )
+          }
+          {
+            primaryServerFarm && (
+              <div className="weui-form-preview__item">
+                <label className="weui-form-preview__label">实服务组</label>
+                {
+                  <ul>
+                    {
+                      realServers.map(rs => (
+                        <li key={rs.name}>
+                          <a href="#">
+                            <em className="weui-form-preview__value">
+                              {rs.name}
+                              {
+                                rs.state === 'Active' ? <Icon value="success" /> : <Icon value="warn" />
+                              }
+                            </em>
+                          </a>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                }
+              </div>
+            )
+          }
+          <PreviewItem label="描述" value={description} />
+        </PreviewBody>
+      </Preview>
       <br />
     </div>
   );
