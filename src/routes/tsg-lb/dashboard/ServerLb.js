@@ -32,7 +32,7 @@ const ServerLb = ({ serverLb }) => {
             }
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/server-lb/real-servers'} access>
+        <Cell>
           <CellBody>
               实服务器
           </CellBody>

@@ -12,7 +12,7 @@ const Device = ({ device }) => {
     <div>
       <CellsTitle>设备情况</CellsTitle>
       <Cells>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               CPU使用率
           </CellBody>
@@ -22,7 +22,7 @@ const Device = ({ device }) => {
             }
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               内存使用率
           </CellBody>
@@ -30,7 +30,7 @@ const Device = ({ device }) => {
             { Math.round((memory.used * 100) / memory.total)}%
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               电源
           </CellBody>
@@ -41,7 +41,7 @@ const Device = ({ device }) => {
             }
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               风扇
           </CellBody>
@@ -52,7 +52,7 @@ const Device = ({ device }) => {
             }
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               环境温度
           </CellBody>

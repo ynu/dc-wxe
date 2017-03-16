@@ -9,7 +9,7 @@ const Interface = ({ interfaces, inboundCounter, outboundCounter }) => {
     <div>
       <CellsTitle>网络接口</CellsTitle>
       <Cells>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               GE
           </CellBody>
@@ -17,7 +17,7 @@ const Interface = ({ interfaces, inboundCounter, outboundCounter }) => {
             UP: {ge.UP}; DOWN: {ge.DOWN}
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               XGE
           </CellBody>
@@ -25,7 +25,7 @@ const Interface = ({ interfaces, inboundCounter, outboundCounter }) => {
             UP: {xge.UP}; DOWN: {xge.DOWN}
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               入流量
           </CellBody>
@@ -33,7 +33,7 @@ const Interface = ({ interfaces, inboundCounter, outboundCounter }) => {
             {Math.round(inboundCounter / 1024 / 1024 / 1024)} Gpkts
           </CellFooter>
         </Cell>
-        <Cell href={'/tsg-lb/device/cpuUsage'} access>
+        <Cell>
           <CellBody>
               出流量
           </CellBody>
