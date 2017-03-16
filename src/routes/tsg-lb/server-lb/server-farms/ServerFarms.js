@@ -3,6 +3,7 @@ import { Toast } from 'react-weui';
 import { connect } from 'react-redux';
 import Container from '../../../../components/Weui/Container';
 import Footer from '../../../../components/Footer';
+import EnsureSignupWxe from '../../../../components/WeChat/EnsureSignupWxe';
 import ServerFarm from './ServerFarm';
 import * as lbActions from '../../../../actions/lb/server-lb';
 
@@ -14,6 +15,7 @@ class ServerFarms extends React.Component {
     const { serverFarms, toast } = this.props;
     return (
       <Container>
+        <EnsureSignupWxe />
         <div className="page__hd" >
           <h1 className="page__title">实服务组({serverFarms.length})</h1>
         </div>

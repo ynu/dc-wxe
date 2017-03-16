@@ -3,6 +3,7 @@ import { Toast } from 'react-weui';
 import { connect } from 'react-redux';
 import Container from '../../../../components/Weui/Container';
 import Footer from '../../../../components/Footer';
+import EnsureSignupWxe from '../../../../components/WeChat/EnsureSignupWxe';
 import VirtualServer from './VirtualServer';
 import * as lbActions from '../../../../actions/lb/server-lb';
 
@@ -16,6 +17,7 @@ class VirtualServers extends React.Component {
     const { virtualServers, toast, serverFarms, realServers } = this.props;
     return (
       <Container>
+        <EnsureSignupWxe />
         <div className="page__hd" >
           <h1 className="page__title">虚服务({virtualServers.length})</h1>
         </div>

@@ -17,6 +17,7 @@ class DashBoard extends React.Component {
     const { dashboard, toast } = this.props;
     return (
       <Container>
+        <EnsureSignupWxe />
         <div className="page__hd" >
           <h1 className="page__title">图书馆负载均衡</h1>
         </div>

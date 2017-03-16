@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Toast, Form, FormCell, CellHeader, CellBody, CellFooter, Button, LoadMore } from 'react-weui';
 import Container from '../../../../components/Weui/Container';
 import Footer from '../../../../components/Footer';
+import EnsureSignupWxe from '../../../../components/WeChat/EnsureSignupWxe';
 import * as lbActions from '../../../../actions/lb/server-lb';
 import ResultItem from './ResultItem';
 
@@ -12,6 +13,7 @@ class Search extends React.Component {
     const { toast, searchDomain, domain, searchResult } = this.props;
     return (
       <Container>
+        <EnsureSignupWxe />
         <div className="page__bd">
           <Form>
             <FormCell>
