@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { FETCH_DONE } from '../../actions/common';
 import { FETCHED_VIRTUAL_SERVERS, FETCHED_SERVER_FARMS,
-  FETCHED_REAL_SERVERS, FETCHED_DASHBOARD } from '../../constants';
+  FETCHED_REAL_SERVERS, FETCHED_DASHBOARD, SEARCH_DOMAIN_DONE } from '../../constants';
 
 const dashboard = (state = {
   device: {
@@ -47,9 +47,19 @@ const realServers = (state = [], action) => {
   }
 };
 
+const searchResult = (state = [], action) => {
+  switch (action.type) {
+    case SEARCH_DOMAIN_DONE:
+      return action.data;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   dashboard,
   virtualServers,
   serverFarms,
   realServers,
+  searchResult,
 });

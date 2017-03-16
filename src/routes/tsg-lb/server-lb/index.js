@@ -6,5 +6,6 @@ export default {
   children: [
     require('./virtual-servers').default,
     require('./server-farms').default,
+    require('./search').default,
   ],
 };

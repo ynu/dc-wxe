@@ -8,6 +8,7 @@ import { SUCCESS, SERVER_FAILED, UNAUTHORIZED } from 'nagu-validates';
 import { auth, error, info } from '../../config';
 import * as lbModel from '../models/cachedLb';
 import * as middleware from '../middlewares/lb';
+import * as searchMw from '../middlewares/domain-search';
 
 const router = new Router();
 
@@ -72,6 +73,25 @@ router.get('/server-lb/real-servers',
   async (req, res) => res.json({
     ret: SUCCESS,
     data: res.realServers,
+  }),
+);
+
+router.get('/search/:domain',
+  // (req, res) => {
+  //   res.send('ok');
+  // },
+  // 确保用户已登录
+  // expressJwt({
+  //   secret: auth.jwt.secret,
+  //   credentialsRequired: true,
+  //   getToken: wxeAuth.getToken,
+  // }),
+  // 获取数据
+  searchMw.domainSearch(),
+  // 返回结果
+  async (req, res) => res.json({
+    ret: SUCCESS,
+    data: res.searchResult,
   }),
 );
 export default router;
