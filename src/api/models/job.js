@@ -7,7 +7,7 @@ import * as model from './cachedLb';
 import { info, error, autoFetchInterval } from '../../config';
 
 const functions = Object.entries(model);
-const flushData = (index, args = []) => {
+const flushData = (index, cacheOptions) => {
   index %= functions.length;
   if (index === 0) {
     console.timeEnd('自动化缓存数据');
@@ -18,12 +18,13 @@ const flushData = (index, args = []) => {
   info('start to flush data:', funcName);
   setTimeout(async () => {
     try {
-      await func.apply(args);
+      // await func.apply(func, [...args, cacheOptions]);
+      await func(cacheOptions);
     } catch (e) {
       error('自动化缓存脚本错误:', e.message);
     }
     info('flush data is done:', funcName);
-    flushData(index + 1, { forceFlush: true });
+    flushData(index + 1, cacheOptions);
   }, autoFetchInterval);
 };
 
