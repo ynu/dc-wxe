@@ -5,10 +5,10 @@ export default {
 
   path: '/site/:siteUri',
 
-  async action() {
+  async action({ params }) {
     return {
       title: 'FC站点',
-      component: <Site />,
+      component: <Site {...params} />,
     };
   },
 

@@ -1,37 +1,25 @@
 import React, { PropTypes } from 'react';
-import { Icon, CellsTitle, Cells, CellFooter, CellBody, Cell, Badge, Toast } from 'react-weui';
+import { Toast } from 'react-weui';
 import { connect } from 'react-redux';
 import Container from '../../../components/Weui/Container';
 import Footer from '../../../components/Footer';
+import Clusters from './Clusters';
+import * as fcActions from '../../../actions/fc';
 
 class Site extends React.Component {
+  componentDidMount() {
+    const { siteUri, fetchClusters } = this.props;
+    fetchClusters(siteUri);
+  }
   render() {
-    const { dashboard, toast } = this.props;
+    const { clusters, toast } = this.props;
     return (
       <Container>
         <div className="page__hd" >
           <h1 className="page__title">site</h1>
         </div>
         <div className="page__bd">
-          <CellsTitle>集群列表(4)</CellsTitle>
-          <Cells>
-            <Cell href={'/fc/cluster/siteUri/clusterUri'} access>
-              <CellBody>ManagementCluster</CellBody>
-              <CellFooter />
-            </Cell>
-            <Cell href={'/fc/cluster/siteUri/clusterUri'} access>
-              <CellBody>测试</CellBody>
-              <CellFooter />
-            </Cell>
-            <Cell href={'/fc/cluster/siteUri/clusterUri'} access>
-              <CellBody>托管</CellBody>
-              <CellFooter />
-            </Cell>
-            <Cell href={'/fc/cluster/siteUri/clusterUri'} access>
-              <CellBody>生产</CellBody>
-              <CellFooter />
-            </Cell>
-          </Cells>
+          <Clusters clusters={clusters} />
         </div>
         <Footer />
         <Toast show={toast.loading} icon="loading">加载中</Toast>
@@ -42,8 +30,8 @@ class Site extends React.Component {
 
 const mapStateToProps = state => ({
   toast: state.wechat.toast,
-  // ...state.lb,
+  ...state.fc,
 });
 export default connect(mapStateToProps, {
-  // ...lbActions,
+  ...fcActions,
 })(Site);

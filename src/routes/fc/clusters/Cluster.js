@@ -1,22 +1,28 @@
 import React, { PropTypes } from 'react';
-import { Icon, CellsTitle, Cells, CellFooter, CellBody, Cell, Badge, Toast } from 'react-weui';
+import { Toast } from 'react-weui';
 import { connect } from 'react-redux';
 import Container from '../../../components/Weui/Container';
 import Footer from '../../../components/Footer';
 import Detail from './Detail';
 import Hosts from './Hosts';
+import * as fcActions from '../../../actions/fc';
 
 class Cluster extends React.Component {
+  componentDidMount() {
+    const { siteUri, clusterUri, fetchComputerResource, fetchCluster } = this.props;
+    fetchComputerResource(siteUri, clusterUri);
+    fetchCluster(siteUri, clusterUri);
+  }
   render() {
-    const { dashboard, toast } = this.props;
+    const { cluster, computerResource, toast } = this.props;
     return (
       <Container>
         <div className="page__hd" >
-          <h1 className="page__title">ManagementCluster</h1>
-          <span className="page__desc">管理和测试集群</span>
+          <h1 className="page__title">{cluster.name}</h1>
+          <span className="page__desc">{cluster.description}</span>
         </div>
         <div className="page__bd">
-          <Detail />
+          <Detail computerResource={computerResource} />
           <Hosts />
         </div>
         <Footer />
@@ -28,8 +34,8 @@ class Cluster extends React.Component {
 
 const mapStateToProps = state => ({
   toast: state.wechat.toast,
-  // ...state.lb,
+  ...state.fc,
 });
 export default connect(mapStateToProps, {
-  // ...lbActions,
+  ...fcActions,
 })(Cluster);

@@ -5,10 +5,10 @@ export default {
 
   path: '/cluster/:siteUri/:clusterUri',
 
-  async action() {
+  async action({ params }) {
     return {
       title: 'FC集群',
-      component: <Cluster />,
+      component: <Cluster {...params} />,
     };
   },
 
