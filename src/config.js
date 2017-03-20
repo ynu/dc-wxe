@@ -56,6 +56,9 @@ export const auth = {
   // lb-api token
   lbApiToken: process.env.LB_API_TOKEN,
 
+  // fc-api token
+  fcApiToken: process.env.FC_API_TOKEN,
+
 };
 
 // debug
@@ -65,6 +68,8 @@ export const info = debug('dc-wxe:info');
 // lb-api
 export const lbApiHost = process.env.LB_API_HOST || 'https://api.ynu.edu.cn/tsg-lb/v1';
 
+// fc-api
+export const fcApiHost = process.env.FC_API_HOST || 'https://api.ynu.edu.cn/fc/v1';
 export const autoFetchInterval = parseInt(process.env.AUTO_FETCH_INTERVAL, 10) || 1000;
 
 export const lbSupervisorTag = process.env.LB_SUPERVISOR_TAG_ID || 53;

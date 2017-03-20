@@ -21,9 +21,10 @@ router.get('/me',
     credentialsRequired: true,
     getToken,
   }),
-  (req, res) => {
-    res.send({ ret: SUCCESS, data: req.user });
-  }
+  async (req, res) => {
+    const data = await wxapi.getUser(req.user.UserId);
+    res.send({ ret: SUCCESS, data });
+  },
 );
 
 router.get('/jsconfig', async (req, res) => {

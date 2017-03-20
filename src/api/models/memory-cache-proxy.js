@@ -6,7 +6,6 @@ const info = debug('memory-cache-proxy:info');
 
 export default async (func, cacheOptions, args) => {
   info(`${func.name} Cache Proxy`);
-
   // 检查cacheOptions是否正确
   if (!cacheOptions || !cacheOptions.key || !cacheOptions.expire) {
     error('cacheOptions must be provided.');

@@ -81,6 +81,7 @@ app.get('/login/facebook/return',
 // -----------------------------------------------------------------------------
 app.use('/api/wxe-auth', wxeAuthCtrl);
 app.use('/api/tsg-lb', controllers.lb);
+app.use('/api/fc', controllers.fc);
 require('./api/jobs');
 app.use('/graphql', expressGraphQL(req => ({
   schema,
