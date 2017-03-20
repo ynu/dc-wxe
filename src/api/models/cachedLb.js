@@ -21,11 +21,8 @@ const getCacheOptions = (args, name) => {
   }
   return cacheOptions;
 };
-export const cpuUsage = (...args) => {
-  console.log('#####', args);
-  return cacheProxy(model.cpuUsage, getCacheOptions(args, 'cpu-usage'), args.slice(0, -1));
-};
-  // cacheProxy(model.cpuUsage, getCacheOptions(args, 'cpu-usage'), args.slice(0, -1));
+export const cpuUsage = (...args) =>
+  cacheProxy(model.cpuUsage, getCacheOptions(args, 'cpu-usage'), args.slice(0, -1));
 
 export const memory = (...args) =>
   cacheProxy(model.memory, getCacheOptions(args, 'memory'), args.slice(0, -1));

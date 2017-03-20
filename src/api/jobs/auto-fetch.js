@@ -3,7 +3,7 @@
 列出所有需要读取的数据，每隔固定时间读取一次。
  */
 
-import * as model from './cachedLb';
+import * as model from '../models/cachedLb';
 import { info, error, autoFetchInterval } from '../../config';
 
 const functions = Object.entries(model);
@@ -18,7 +18,6 @@ const flushData = (index, cacheOptions) => {
   info('start to flush data:', funcName);
   setTimeout(async () => {
     try {
-      // await func.apply(func, [...args, cacheOptions]);
       await func(cacheOptions);
     } catch (e) {
       error('自动化缓存脚本错误:', e.message);
