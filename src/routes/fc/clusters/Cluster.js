@@ -23,7 +23,7 @@ class Cluster extends React.Component {
         </div>
         <div className="page__bd">
           <Detail computerResource={computerResource} />
-          <Hosts />
+          {/* <Hosts />*/}
         </div>
         <Footer />
         <Toast show={toast.loading} icon="loading">加载中</Toast>

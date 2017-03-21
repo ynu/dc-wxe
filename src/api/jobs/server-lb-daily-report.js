@@ -28,7 +28,7 @@ const renderRealServersStatusTextLine = async () => {
     if (!acc[cur.state]) acc[cur.state] = 0;
     acc[cur.state]++;
     return acc;
-  }, { total: rss.length });
+  }, { total: rss.length, Active: 0, Inactive: 0 });
   return `实服务器：${result.Active}个可用，${result.Inactive}个不可用。`;
 };
 
