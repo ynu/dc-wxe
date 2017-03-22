@@ -67,11 +67,14 @@ export const info = debug('dc-wxe:info');
 
 // lb-api
 export const lbApiHost = process.env.LB_API_HOST || 'https://api.ynu.edu.cn/tsg-lb/v1';
+export const lbSupervisorTag = process.env.LB_SUPERVISOR_TAG_ID || 53;
+export const autoFetchInterval = parseInt(process.env.AUTO_FETCH_INTERVAL, 10) || 1000;
 
 // fc-api
 export const fcApiHost = process.env.FC_API_HOST || 'https://api.ynu.edu.cn/fc/v1';
-export const autoFetchInterval = parseInt(process.env.AUTO_FETCH_INTERVAL, 10) || 1000;
+export const fcSupervisorTag = process.env.FC_SUPERVISOR_TAG_ID || 54;
 
-export const lbSupervisorTag = process.env.LB_SUPERVISOR_TAG_ID || 53;
 
 export const dailyReportCron = process.env.DAILY_REPORT_CRON || '0 0 7 * * *';
+
+export const siteUri = process.env.DEFAULT_SITE_URI || '3F7B07E2';
