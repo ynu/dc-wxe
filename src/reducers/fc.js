@@ -38,9 +38,42 @@ const computerResource = (state = {}, action) => {
   }
 };
 
+const hosts = (state = [], action) => {
+  switch (action.type) {
+    case constants.FETCHED_FC_CLUSTER_HOSTS:
+      return action.data;
+    default:
+      return state;
+  }
+};
+
+const host = (state = {
+  cpuResource: {},
+  memResource: {},
+}, action) => {
+  switch (action.type) {
+    case constants.FETCHED_FC_HOST:
+      return action.data;
+    default:
+      return state;
+  }
+};
+
+const vms = (state = [], action) => {
+  switch (action.type) {
+    case constants.FETCHED_FC_HOST_VMS:
+      return action.data;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   sites,
   clusters,
   cluster,
   computerResource,
+  hosts,
+  vms,
+  host,
 });

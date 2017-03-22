@@ -99,3 +99,85 @@ export const computerResource = (options = {}) => async (req, res, next) => {
     fail(e, req, res, next);
   }
 };
+
+export const hosts = (options = {}) => async (req, res, next) => {
+  let { success, fail, getSiteUri, getClusterUri } = options;
+
+  success = success || ((data, req, res, next) => {
+    res.hosts = data;
+    next();
+  });
+  fail = fail || ((e, req, res) => res.send({
+    ret: SERVER_FAILED,
+    msg: e.message,
+  }));
+
+  getSiteUri = getSiteUri || (req => req.params.siteUri);
+  getClusterUri = getClusterUri || (req => req.params.clusterUri);
+  const siteUri = getSiteUri(req, res);
+  const clusterUri = getClusterUri(req, res);
+  try {
+    let result = (await model.hosts(siteUri)).list;
+
+    // 如果有clusterUri参数，则根据clusterUri进行筛选
+    if (clusterUri) {
+      result = result.filter(host => host.clusterUrn.includes(`clusters:${clusterUri}`));
+    }
+    success(result, req, res, next);
+  } catch (e) {
+    error('hosts中间件异常', e.message);
+    fail(e, req, res, next);
+  }
+};
+
+export const host = (options = {}) => async (req, res, next) => {
+  let { success, fail, getSiteUri, getHostUri } = options;
+
+  success = success || ((data, req, res, next) => {
+    res.data = data;
+    next();
+  });
+  fail = fail || ((e, req, res) => res.send({
+    ret: SERVER_FAILED,
+    msg: e.message,
+  }));
+
+  getSiteUri = getSiteUri || (req => req.params.siteUri);
+  getHostUri = getHostUri || (req => req.params.hostUri);
+  const siteUri = getSiteUri(req, res);
+  const hostUri = getHostUri(req, res);
+  try {
+    const result = (await model.hosts(siteUri)).list.find(host => host.uri.includes(`/hosts/${hostUri}`));
+    success(result, req, res, next);
+  } catch (e) {
+    error('host中间件异常', e.message);
+    fail(e, req, res, next);
+  }
+};
+
+export const vms = (options = {}) => async (req, res, next) => {
+  let { success, fail, getSiteUri, getHostUri } = options;
+
+  success = success || ((data, req, res, next) => {
+    res.vms = data;
+    next();
+  });
+  fail = fail || ((e, req, res) => res.send({
+    ret: SERVER_FAILED,
+    msg: e.message,
+  }));
+
+  getSiteUri = getSiteUri || (req => req.params.siteUri);
+  getHostUri = getHostUri || (req => req.params.hostUri);
+  const siteUri = getSiteUri(req, res);
+  const hostUri = getHostUri(req, res);
+  try {
+    let result = await model.vms(siteUri);
+    result = result.filter(vm => vm.hostUrn.includes(`hosts:${hostUri}`));
+
+    success(result, req, res, next);
+  } catch (e) {
+    error('vms中间件异常', e.message);
+    fail(e, req, res, next);
+  }
+};

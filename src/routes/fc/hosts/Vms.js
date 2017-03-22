@@ -1,23 +1,24 @@
 import React, { PropTypes } from 'react';
 import { Icon, CellsTitle, Cells, CellFooter, CellBody, Cell, Badge, Toast } from 'react-weui';
 
-const Hosts = (props) => {
-  const { hosts } = props;
+const Vms = (props) => {
+  const { vms } = props;
   return (
     <div>
-      <CellsTitle>主机列表({hosts.length})</CellsTitle>
+      <CellsTitle>主机列表({vms.length})</CellsTitle>
       <Cells>
         {
-          hosts.map(({ urn, name, status }) => {
-            const result = /sites:(\S+):hosts:(\S+)/.exec(urn);
+          vms.map(({ name, status, description, urn }) => {
+            const result = /sites:(\S+):vms:(\S+)/.exec(urn);
             const siteUri = result[1];
-            const hostUri = result[2];
+            const vmUri = result[2];
             return (
-              <Cell key={urn} href={`/fc/hosts/${siteUri}/${hostUri}`} access>
+              <Cell key={urn} href={`/fc/vms/${siteUri}/${vmUri}`} access>
                 <CellBody>{name}</CellBody>
                 <CellFooter>
+                  {description}
                   {
-                    status === 'normal'
+                    status === 'running'
                     ? <Icon type="success" />
                     : <Icon type="warn" />
                   }
@@ -32,4 +33,4 @@ const Hosts = (props) => {
   );
 };
 
-export default Hosts;
+export default Vms;

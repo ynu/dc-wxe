@@ -46,4 +46,16 @@ describe('FC API', function () {
       expect(result.totalSizeMHz).is.ok;
     });
   });
+  describe('Host', () => {
+    it('hosts', async () => {
+      const result = await model.hosts(siteUri);
+      expect(result.total).is.ok;
+    });
+  });
+  describe('Vm', () => {
+    it('vms', async () => {
+      const result = await model.vms(siteUri);
+      expect(result.total).is.ok;
+    });
+  });
 });

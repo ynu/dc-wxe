@@ -4,27 +4,26 @@ import { connect } from 'react-redux';
 import Container from '../../../components/Weui/Container';
 import Footer from '../../../components/Footer';
 import Detail from './Detail';
-import Hosts from './Hosts';
+import Vms from './Vms';
 import * as fcActions from '../../../actions/fc';
 
-class Cluster extends React.Component {
+class Host extends React.Component {
   componentDidMount() {
-    const { siteUri, clusterUri, fetchComputerResource, fetchCluster, fetchHosts } = this.props;
-    fetchComputerResource(siteUri, clusterUri);
-    fetchCluster(siteUri, clusterUri);
-    fetchHosts(siteUri, clusterUri);
+    const { siteUri, hostUri, fetchHost, fetchVms } = this.props;
+    fetchHost(siteUri, hostUri);
+    fetchVms(siteUri, hostUri);
   }
   render() {
-    const { cluster, computerResource, hosts, toast } = this.props;
+    const { host, vms, toast } = this.props;
     return (
       <Container>
         <div className="page__hd" >
-          <h1 className="page__title">{cluster.name}</h1>
-          <span className="page__desc">{cluster.description}</span>
+          <h1 className="page__title">{host.name}</h1>
+          <span className="page__desc">{host.description}</span>
         </div>
         <div className="page__bd">
-          <Detail computerResource={computerResource} />
-          <Hosts hosts={hosts} />
+          { host && <Detail {...host} />}
+          <Vms vms={vms} />
         </div>
         <Footer />
         <Toast show={toast.loading} icon="loading">加载中</Toast>
@@ -39,4 +38,4 @@ const mapStateToProps = state => ({
 });
 export default connect(mapStateToProps, {
   ...fcActions,
-})(Cluster);
+})(Host);

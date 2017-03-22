@@ -7,7 +7,7 @@ import * as model from './fc';
 import cacheProxy from './memory-cache-proxy';
 
 
-const getCacheOptions = (args, name) => {
+const getCacheOptions = (name) => {
   const TEN_HOURS = 10 * 3600 * 1000;
   return {
     key: `dc-wxe:fc:${name}`,
@@ -16,13 +16,30 @@ const getCacheOptions = (args, name) => {
 };
 
 export const sites = (...args) =>
-  cacheProxy(model.sites, getCacheOptions(args, 'sites'), args);
+  cacheProxy(model.sites, getCacheOptions('sites'), args);
 
 export const clusters = (...args) =>
-  cacheProxy(model.clusters, getCacheOptions(args, `clusters${args}`), args);
+  cacheProxy(model.clusters, getCacheOptions(`clusters${args}`), args);
 
 export const cluster = (...args) =>
-  cacheProxy(model.cluster, getCacheOptions(args, `cluster:${args}`), args);
+  cacheProxy(model.cluster, getCacheOptions(`cluster:${args}`), args);
 
 export const computerResource = (...args) =>
-  cacheProxy(model.computerResource, getCacheOptions(args, `computerResource:${args}`), args);
+  cacheProxy(model.computerResource, getCacheOptions(`computerResource:${args}`), args);
+
+export const hosts = (...args) =>
+  cacheProxy(model.hosts, getCacheOptions(`computerResource:${args}`), args);
+
+export const vms = (siteUri) => {
+  const getVms = async (limit = 100, offset = 0) => {
+    const result = await model.vms(siteUri, limit, offset);
+    // 当还有数据未被取出时，递归读取数据；
+    if (result.total > result.list.length + offset) {
+      const rest = await getVms(limit, offset + limit);
+      return result.list.concat(rest);
+    }
+    // 不再有剩余数据时，返回本次取到的数据
+    return result.list;
+  };
+  return cacheProxy(getVms, getCacheOptions('vms'), [100, 0]);
+};

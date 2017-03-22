@@ -104,3 +104,31 @@ export const computerResource = async (siteUri, clusterUri) => {
     return {};
   }
 };
+
+export const hosts = async (siteUri, limit = 100, offset = 0) => {
+  const url = `${fcApiHost}/site/${siteUri}/hostResource/?limit=${limit}&offset=${offset}&token=${auth.fcApiToken}`;
+  info('Read FC hosts from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.errorCode === '00000000') return result.result;
+    throw new Error(result.errorDes);
+  } catch (e) {
+    error('远程获取fc/hosts', e.message);
+    return {};
+  }
+};
+
+export const vms = async (siteUri, limit = 100, offset = 0) => {
+  const url = `${fcApiHost}/site/${siteUri}/vmResource/?limit=${limit}&offset=${offset}&token=${auth.fcApiToken}`;
+  info('Read FC vms from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.errorCode === '00000000') return result.result;
+    throw new Error(result.errorDes);
+  } catch (e) {
+    error('远程获取fc/vms', e.message);
+    return {};
+  }
+};

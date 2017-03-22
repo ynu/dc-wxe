@@ -6,5 +6,6 @@ export default {
   children: [
     require('./sites').default,
     require('./clusters').default,
+    require('./hosts').default,
   ],
 };
