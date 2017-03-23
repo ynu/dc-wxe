@@ -28,7 +28,7 @@ export const computerResource = (...args) =>
   cacheProxy(model.computerResource, getCacheOptions(`computerResource:${args}`), args);
 
 export const hosts = (...args) =>
-  cacheProxy(model.hosts, getCacheOptions(`computerResource:${args}`), args);
+  cacheProxy(model.hosts, getCacheOptions(`hosts:${args}`), args);
 
 export const vms = (siteUri) => {
   const getVms = async (limit = 100, offset = 0) => {
@@ -43,3 +43,6 @@ export const vms = (siteUri) => {
   };
   return cacheProxy(getVms, getCacheOptions('vms'), [100, 0]);
 };
+
+export const vm = (...args) =>
+  cacheProxy(model.vm, getCacheOptions(`vm:${args}`), args);

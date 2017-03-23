@@ -68,6 +68,15 @@ const vms = (state = [], action) => {
   }
 };
 
+const vm = (state = {}, action) => {
+  switch (action.type) {
+    case constants.FETCHED_FC_VM:
+      return action.data;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   sites,
   clusters,
@@ -76,4 +85,5 @@ export default combineReducers({
   hosts,
   vms,
   host,
+  vm,
 });

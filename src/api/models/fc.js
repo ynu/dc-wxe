@@ -132,3 +132,17 @@ export const vms = async (siteUri, limit = 100, offset = 0) => {
     return {};
   }
 };
+
+export const vm = async (siteUri, vmId) => {
+  const url = `${fcApiHost}/site/${siteUri}/vmResource/${vmId}?token=${auth.fcApiToken}`;
+  info('Read FC vm from Url:', url);
+  try {
+    const res = await fetch(url);
+    const result = await res.json();
+    if (result.errorCode === '00000000') return result.result;
+    throw new Error(result.errorDes);
+  } catch (e) {
+    error('远程获取fc/vm', e.message);
+    return {};
+  }
+};

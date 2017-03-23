@@ -12,6 +12,10 @@
   - /server-lb/server-farms
   - /server-lb/virtual-servers
 - 实现根据域名在LB上的深度搜索
+- 实现FC页面：
+  - site
+  - cluster
+  - host
 
 ### v1.0
 - 完成tsg-lb 仪表盘页面

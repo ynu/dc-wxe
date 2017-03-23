@@ -181,3 +181,28 @@ export const vms = (options = {}) => async (req, res, next) => {
     fail(e, req, res, next);
   }
 };
+
+export const vm = (options = {}) => async (req, res, next) => {
+  let { success, fail, getSiteUri, getVmUri } = options;
+
+  success = success || ((data, req, res, next) => {
+    res.data = data;
+    next();
+  });
+  fail = fail || ((e, req, res) => res.send({
+    ret: SERVER_FAILED,
+    msg: e.message,
+  }));
+
+  getSiteUri = getSiteUri || (req => req.params.siteUri);
+  getVmUri = getVmUri || (req => req.params.vmUri);
+  const siteUri = getSiteUri(req, res);
+  const vmUri = getVmUri(req, res);
+  try {
+    const result = await model.vm(siteUri, vmUri);
+    success(result, req, res, next);
+  } catch (e) {
+    error('vm中间件异常', e.message);
+    fail(e, req, res, next);
+  }
+};

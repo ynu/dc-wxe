@@ -5,6 +5,7 @@ import * as model from './fc';
 
 const siteUri = '3F7B07E2';
 const clusterUri = '79';
+const vmId = 'i-00000265';
 describe('FC API', function () {
   this.timeout(600000);
   describe('Site', () => {
@@ -56,6 +57,10 @@ describe('FC API', function () {
     it('vms', async () => {
       const result = await model.vms(siteUri);
       expect(result.total).is.ok;
+    });
+    it('vm', async () => {
+      const result = await model.vm(siteUri, vmId);
+      expect(result.urn).is.ok;
     });
   });
 });

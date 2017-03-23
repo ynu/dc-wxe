@@ -7,5 +7,6 @@ export default {
     require('./sites').default,
     require('./clusters').default,
     require('./hosts').default,
+    require('./vms').default,
   ],
 };

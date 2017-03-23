@@ -192,6 +192,33 @@ export const fetchVms = (siteUri, hostUri) => async (dispatch) => {
   }
 };
 
+export const fetchVm = (siteUri, vmUri) => async (dispatch) => {
+  dispatch(fetching());
+  try {
+    const res = await fetch(`/api/fc/sites/${siteUri}/vms/${vmUri}`, {
+      credentials: 'same-origin',
+    });
+    const result = await res.json();
+    if (result.ret === SUCCESS) {
+      dispatch(fetchDone(result.data));
+      dispatch({
+        type: constants.FETCHED_FC_VM,
+        data: result.data,
+      });
+      return Promise.resolve(result.data);
+    }
+    dispatch(fetchFailed(result));
+    return Promise.reject(result);
+  } catch (msg) {
+    const result = {
+      ret: OTHER_ERROR,
+      msg,
+    };
+    dispatch(fetchFailed(result));
+    return Promise.reject(result);
+  }
+};
+
 export default {
   fetchSites,
   fetchClusters,
@@ -200,4 +227,5 @@ export default {
   fetchHosts,
   fetchVms,
   fetchHost,
+  fetchVm,
 };

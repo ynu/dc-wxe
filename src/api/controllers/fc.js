@@ -107,6 +107,22 @@ router.get('/sites/:siteUri/hosts/:hostUri',
   }),
 );
 
+router.get('/sites/:siteUri/vms/:vmUri',
+  // 确保用户已登录
+  expressJwt({
+    secret: auth.jwt.secret,
+    credentialsRequired: true,
+    getToken: wxeAuth.getToken,
+  }),
+  // 获取数据
+  middleware.vm(),
+  // 返回结果
+  async (req, res) => res.json({
+    ret: SUCCESS,
+    data: res.data,
+  }),
+);
+
 router.get('/sites/:siteUri/hosts/:hostUri/vms',
   // 确保用户已登录
   expressJwt({
