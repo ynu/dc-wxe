@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Container from '../../../components/Weui/Container';
 import Footer from '../../../components/Footer';
 import Clusters from './Clusters';
+import EnsureSignupWxe from '../../../components/WeChat/EnsureSignupWxe';
 import * as fcActions from '../../../actions/fc';
 
 class Site extends React.Component {
@@ -15,6 +16,7 @@ class Site extends React.Component {
     const { clusters, toast } = this.props;
     return (
       <Container>
+        <EnsureSignupWxe />
         <div className="page__hd" >
           <h1 className="page__title">site</h1>
         </div>
