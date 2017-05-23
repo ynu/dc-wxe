@@ -9,10 +9,10 @@ import { info, error, autoFetchInterval } from '../../config';
 const functions = Object.entries(model);
 const flushData = (index, cacheOptions) => {
   index %= functions.length;
-  if (index === 0) {
-    console.timeEnd('自动化缓存数据');
-    console.time('自动化缓存数据');
-  }
+  // if (index === 0) {
+  //   console.timeEnd('自动化缓存数据');
+  //   console.time('自动化缓存数据');
+  // }
   const func = functions[index][1];
   const funcName = functions[index][0];
   info('start to flush data:', funcName);
