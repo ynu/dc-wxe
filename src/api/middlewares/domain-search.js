@@ -17,10 +17,11 @@ const deepSearch = async (domain) => {
     model.realServers(),
     model.virtualServers(),
   ]);
+  info('get all infomations for searching');
 
   // 获取与域名相关的所有LB class
   const classes = lbClasses.filter((cls) => {
-    const rules = cls.matchRules.filter(rule => rule.header.toLowerCase() === 'host');
+    const rules = cls.matchRules.filter(rule => rule.header && rule.header.toLowerCase() === 'host');
     return rules.some((rule) => {
       const reg = new RegExp(rule.value);
       return reg.test(domain);
@@ -75,6 +76,7 @@ export const domainSearch = (options = {}) => async (req, res, next) => {
   }));
 
   const domain = getDomain(req, res);
+  info('search domain:', domain);
   try {
     const data = await deepSearch(domain);
     success(data, req, res, next);
