@@ -1,3 +1,7 @@
+/*
+FC状态每日推送 - 企业微信版
+*/
+
 import { scheduleJob } from 'node-schedule';
 import WxeApi from 'wxe-api';
 import * as model from '../models/cachedFc';
@@ -56,24 +60,34 @@ const sendReport = async () => {
     ]);
     const wxeapi = new WxeApi(auth.wxent);
 
-    // 生成消息文本
-    const article = {
+    // // 生成消息文本
+    // const article = {
+    //   title: 'FC服务状态',
+    //   description: texts.join('\n'),
+    //   url: `http://${host}/fc/site/${siteUri}`,
+    //   picurl: '',
+    // };
+
+    // 生成文本卡片
+    const textcard = {
       title: 'FC服务状态',
       description: texts.join('\n'),
       url: `http://${host}/fc/site/${siteUri}`,
-      picurl: '',
+      btntxt: '详情',
     };
 
     // 2.3. 推送微信通知
-    return wxeapi.sendNews({
+    return wxeapi.sendTextCard({
       totag: fcSupervisorTag,
-    }, auth.wxent.agentId, [article]);
+    }, auth.wxent.agentId, textcard);
   } catch (e) {
     error('生成FC每日状态异常', e.message);
     return Promise.reject(e);
   }
 };
 
+
+// 使用定时任务，每天推送FC状态
 scheduleJob(dailyReportCron, async () => {
   try {
     await sendReport();
