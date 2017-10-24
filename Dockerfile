@@ -1,4 +1,4 @@
-FROM node:7
+FROM node:8
 
 ADD package.json /rsk/
 ADD LICENSE.txt /rsk/
