@@ -59,11 +59,17 @@ export const auth = {
   // fc-api token
   fcApiToken: process.env.FC_API_TOKEN,
 
+  // zq-api token
+  zqApiToken: process.env.ZQ_API_TOKEN,
+
 };
 
 // debug
 export const error = debug('dc-wxe:error');
+// error.log = console.log.bind(console);
+
 export const info = debug('dc-wxe:info');
+// info.log = console.log.bind(console);
 
 // lb-api
 export const lbApiHost = process.env.LB_API_HOST || 'https://api.ynu.edu.cn/tsg-lb/v1';
@@ -78,3 +84,7 @@ export const fcSupervisorTag = process.env.FC_SUPERVISOR_TAG_ID || 54;
 export const dailyReportCron = process.env.DAILY_REPORT_CRON || '0 0 7 * * *';
 
 export const siteUri = process.env.DEFAULT_SITE_URI || '3F7B07E2';
+
+// zq-api
+export const zqApiHost = process.env.ZQ_API_HOST || 'https://api.ynu.edu.cn/zq/v1';
+export const zqSupervisorTag = process.env.ZQ_SUPERVISOR_TAG_ID || 56;

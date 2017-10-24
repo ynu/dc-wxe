@@ -60,14 +60,6 @@ const sendReport = async () => {
     ]);
     const wxeapi = new WxeApi(auth.wxent);
 
-    // // 生成消息文本
-    // const article = {
-    //   title: 'FC服务状态',
-    //   description: texts.join('\n'),
-    //   url: `http://${host}/fc/site/${siteUri}`,
-    //   picurl: '',
-    // };
-
     // 生成文本卡片
     const textcard = {
       title: 'FC服务状态',
