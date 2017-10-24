@@ -62,11 +62,14 @@ export const auth = {
   // zq-api token
   zqApiToken: process.env.ZQ_API_TOKEN,
 
+  // imp-api token
+  impApiToken: process.env.IMP_API_TOKEN,
+
 };
 
 // debug
 export const error = debug('dc-wxe:error');
-// error.log = console.log.bind(console);
+error.log = console.log.bind(console);
 
 export const info = debug('dc-wxe:info');
 // info.log = console.log.bind(console);
@@ -88,3 +91,7 @@ export const siteUri = process.env.DEFAULT_SITE_URI || '3F7B07E2';
 // zq-api
 export const zqApiHost = process.env.ZQ_API_HOST || 'https://api.ynu.edu.cn/zq/v1';
 export const zqSupervisorTag = process.env.ZQ_SUPERVISOR_TAG_ID || 56;
+
+// imp-api
+export const impApiHost = process.env.IMP_API_HOST || 'https://api.ynu.edu.cn/imp/v1';
+export const impSupervisorTag = process.env.IMP_SUPERVISOR_TAG_ID || 57;
