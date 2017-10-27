@@ -18,12 +18,12 @@ Before you start, take a moment to see how the project structure looks like:
 ├── /public/                    # Static files which are copied into the /build/public folder
 ├── /src/                       # The source code of the application
 │   ├── /components/            # React components
-│   ├── /core/                  # Core framework and utility functions
 │   ├── /data/                  # GraphQL server schema and data models
 │   ├── /routes/                # Page/screen components along with the routing information
 │   ├── /client.js              # Client-side startup script
 │   ├── /config.js              # Global application settings
-│   └── /server.js              # Server-side startup script
+│   ├── /server.js              # Server-side startup script
+│   └── ...                     # Other core framework modules
 ├── /test/                      # Unit and end-to-end tests
 ├── /tools/                     # Build automation scripts and utilities
 │   ├── /lib/                   # Library for utility snippets
@@ -61,7 +61,7 @@ $ cd MyApp
 ```
 
 Alternatively, you can start a new project based on RSK right from
-[WebStorm IDE](https://www.jetbrains.com/webstorm/help/create-new-project-react-starter-kit.html),
+[WebStorm IDE](https://www.jetbrains.com/help/webstorm/generating-a-project-from-a-framework-template.html#d88767e51),
 or by using [Yeoman generator](https://www.npmjs.com/package/generator-react-fullstack).
 
 #### 2. Run `yarn install`
@@ -76,10 +76,10 @@ This command will build the app from the source files (`/src`) into the output
 Node.js server (`node build/server.js`) and [Browsersync](https://browsersync.io/)
 with [HMR](https://webpack.github.io/docs/hot-module-replacement) on top of it.
 
-> [http://localhost:3000/](http://localhost:3000/) — Node.js server (`build/server.js`)<br>
+> [http://localhost:3000/](http://localhost:3000/) — Node.js server (`build/server.js`)
+  with Browsersync and HMR enabled<br>
 > [http://localhost:3000/graphql](http://localhost:3000/graphql) — GraphQL server and IDE<br>
-> [http://localhost:3001/](http://localhost:3001/) — BrowserSync proxy with HMR, React Hot Transform<br>
-> [http://localhost:3002/](http://localhost:3002/) — BrowserSync control panel (UI)
+> [http://localhost:3001/](http://localhost:3001/) — Browsersync control panel (UI)
 
 Now you can open your web app in a browser, on mobile devices and start
 hacking. Whenever you modify any of the source files inside the `/src` folder,

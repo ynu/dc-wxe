@@ -7,16 +7,15 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+/* eslint-disable global-require */
+
 module.exports = () => ({
   // The list of plugins for PostCSS
   // https://github.com/postcss/postcss
   plugins: [
     // Transfer @import rule by inlining content, e.g. @import 'normalize.css'
-    // https://github.com/jonathantneal/postcss-partial-import
-    require('postcss-partial-import')(),
-    // Allow you to fix url() according to postcss to and/or from options
-    // https://github.com/postcss/postcss-url
-    require('postcss-url')(),
+    // https://github.com/postcss/postcss-import
+    require('postcss-import')(),
     // W3C variables, e.g. :root { --color: red; } div { background: var(--color); }
     // https://github.com/postcss/postcss-custom-properties
     require('postcss-custom-properties')(),

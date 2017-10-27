@@ -7,7 +7,8 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Page.css';
 
@@ -22,7 +23,9 @@ class Page extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>{title}</h1>
+          <h1>
+            {title}
+          </h1>
           <div
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: html }}
