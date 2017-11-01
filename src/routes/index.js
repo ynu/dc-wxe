@@ -10,8 +10,7 @@
 /* eslint-disable global-require */
 
 // The top-level (parent) route
-export default {
-
+const routes = {
   path: '/',
 
   // Keep in mind, routes are evaluated in order
@@ -25,9 +24,16 @@ export default {
     // require('./about').default,
     // require('./privacy').default,
     // require('./admin').default,
+    // {
+    //   path: '/',
+    //   load: () => import(/* webpackChunkName: 'home' */ './home'),
+    // },
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
-    require('./notFound').default,
+    {
+      path: '*',
+      load: () => import(/* webpackChunkName: 'not-found' */ './not-found'),
+    },
   ],
 
   async action({ next }) {
@@ -40,5 +46,14 @@ export default {
 
     return route;
   },
-
 };
+
+// The error page is available by permanent url for development mode
+if (__DEV__) {
+  routes.children.unshift({
+    path: '/error',
+    action: require('./error').default,
+  });
+}
+
+export default routes;

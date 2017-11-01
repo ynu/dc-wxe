@@ -1,10 +1,14 @@
 import { OTHER_ERROR, SUCCESS } from 'nagu-validates';
-import fetch from '../../core/fetch';
+import fetch from 'isomorphic-fetch';
 import { fetching, fetchFailed, fetchDone } from '../common';
-import { FETCHED_VIRTUAL_SERVERS, FETCHED_SERVER_FARMS,
-  FETCHED_REAL_SERVERS, SEARCH_DOMAIN_DONE } from '../../constants';
+import {
+  FETCHED_VIRTUAL_SERVERS,
+  FETCHED_SERVER_FARMS,
+  FETCHED_REAL_SERVERS,
+  SEARCH_DOMAIN_DONE,
+} from '../../constants';
 
-export const fetchVirtualServers = () => async (dispatch) => {
+export const fetchVirtualServers = () => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch('/api/tsg-lb/server-lb/virtual-servers', {
@@ -31,7 +35,7 @@ export const fetchVirtualServers = () => async (dispatch) => {
   }
 };
 
-export const fetchServerFarms = () => async (dispatch) => {
+export const fetchServerFarms = () => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch('/api/tsg-lb/server-lb/server-farms', {
@@ -58,7 +62,7 @@ export const fetchServerFarms = () => async (dispatch) => {
   }
 };
 
-export const fetchRealServers = () => async (dispatch) => {
+export const fetchRealServers = () => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch('/api/tsg-lb/server-lb/real-servers', {
@@ -85,7 +89,7 @@ export const fetchRealServers = () => async (dispatch) => {
   }
 };
 
-export const searchDomain = domain => async (dispatch) => {
+export const searchDomain = domain => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch(`/api/tsg-lb/search/${domain}`, {

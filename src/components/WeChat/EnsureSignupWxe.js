@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { SUCCESS, UNAUTHORIZED } from 'nagu-validates';
 import NeedSignup from '../Auth/NeedSignup';
-import fetch from '../../core/fetch';
+import fetch from 'isomorphic-fetch';
 
 const EnsureSignupWxe = () => {
   const redirectToLogin = () =>
@@ -21,12 +21,7 @@ const EnsureSignupWxe = () => {
     if (result.ret === 0) return result.data;
     throw result;
   };
-  return (
-    <NeedSignup
-      fail={redirectToLogin}
-      getMe={getMe}
-    />
-  );
+  return <NeedSignup fail={redirectToLogin} getMe={getMe} />;
 };
 
 export default EnsureSignupWxe;

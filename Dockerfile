@@ -1,15 +1,17 @@
 FROM node:8
 
-ADD package.json /rsk/
-ADD LICENSE.txt /rsk/
-ADD src /rsk/src
-ADD public /rsk/public
-ADD tools /rsk/tools
-WORKDIR /rsk
+# Set a working directory
+WORKDIR /usr/src/app
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN npm install
-RUN ./node_modules/.bin/babel-node tools/run build --release
-EXPOSE 3000
+
+COPY ./build/package.json .
+COPY ./build/yarn.lock .
+
+# Install Node.js dependencies
+RUN yarn install --production --no-progress
+
+# Copy application files
+COPY ./build .
 
 CMD node build/server.js

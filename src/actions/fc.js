@@ -1,9 +1,9 @@
 import { OTHER_ERROR, SUCCESS } from 'nagu-validates';
-import fetch from '../core/fetch';
+import fetch from 'isomorphic-fetch';
 import { fetching, fetchFailed, fetchDone } from './common';
 import * as constants from '../constants';
 
-export const fetchSites = () => async (dispatch) => {
+export const fetchSites = () => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch('/api/fc/sites', {
@@ -30,7 +30,7 @@ export const fetchSites = () => async (dispatch) => {
   }
 };
 
-export const fetchClusters = siteUri => async (dispatch) => {
+export const fetchClusters = siteUri => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch(`/api/fc/sites/${siteUri}/clusters`, {
@@ -57,7 +57,7 @@ export const fetchClusters = siteUri => async (dispatch) => {
   }
 };
 
-export const fetchCluster = (siteUri, clusterUri) => async (dispatch) => {
+export const fetchCluster = (siteUri, clusterUri) => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch(`/api/fc/sites/${siteUri}/clusters/${clusterUri}`, {
@@ -84,12 +84,18 @@ export const fetchCluster = (siteUri, clusterUri) => async (dispatch) => {
   }
 };
 
-export const fetchComputerResource = (siteUri, clusterUri) => async (dispatch) => {
+export const fetchComputerResource = (
+  siteUri,
+  clusterUri,
+) => async dispatch => {
   dispatch(fetching());
   try {
-    const res = await fetch(`/api/fc/sites/${siteUri}/computer-resource/${clusterUri}`, {
-      credentials: 'same-origin',
-    });
+    const res = await fetch(
+      `/api/fc/sites/${siteUri}/computer-resource/${clusterUri}`,
+      {
+        credentials: 'same-origin',
+      },
+    );
     const result = await res.json();
     if (result.ret === SUCCESS) {
       dispatch(fetchDone(result.data));
@@ -111,12 +117,15 @@ export const fetchComputerResource = (siteUri, clusterUri) => async (dispatch) =
   }
 };
 
-export const fetchHosts = (siteUri, clusterUri) => async (dispatch) => {
+export const fetchHosts = (siteUri, clusterUri) => async dispatch => {
   dispatch(fetching());
   try {
-    const res = await fetch(`/api/fc/sites/${siteUri}/clusters/${clusterUri}/hosts`, {
-      credentials: 'same-origin',
-    });
+    const res = await fetch(
+      `/api/fc/sites/${siteUri}/clusters/${clusterUri}/hosts`,
+      {
+        credentials: 'same-origin',
+      },
+    );
     const result = await res.json();
     if (result.ret === SUCCESS) {
       dispatch(fetchDone(result.data));
@@ -138,7 +147,7 @@ export const fetchHosts = (siteUri, clusterUri) => async (dispatch) => {
   }
 };
 
-export const fetchHost = (siteUri, hostUri) => async (dispatch) => {
+export const fetchHost = (siteUri, hostUri) => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch(`/api/fc/sites/${siteUri}/hosts/${hostUri}`, {
@@ -165,7 +174,7 @@ export const fetchHost = (siteUri, hostUri) => async (dispatch) => {
   }
 };
 
-export const fetchVms = (siteUri, hostUri) => async (dispatch) => {
+export const fetchVms = (siteUri, hostUri) => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch(`/api/fc/sites/${siteUri}/hosts/${hostUri}/vms`, {
@@ -192,7 +201,7 @@ export const fetchVms = (siteUri, hostUri) => async (dispatch) => {
   }
 };
 
-export const fetchVm = (siteUri, vmUri) => async (dispatch) => {
+export const fetchVm = (siteUri, vmUri) => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch(`/api/fc/sites/${siteUri}/vms/${vmUri}`, {

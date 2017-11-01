@@ -1,9 +1,9 @@
 import { OTHER_ERROR, SUCCESS } from 'nagu-validates';
-import fetch from '../../core/fetch';
+import fetch from 'isomorphic-fetch';
 import { fetching, fetchFailed, fetchDone } from '../common';
 import { FETCHED_DASHBOARD } from '../../constants';
 
-export const fetchDashboard = () => async (dispatch) => {
+export const fetchDashboard = () => async dispatch => {
   dispatch(fetching());
   try {
     const res = await fetch('/api/tsg-lb/dashboard', {
