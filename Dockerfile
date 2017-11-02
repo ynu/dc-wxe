@@ -18,7 +18,7 @@ ADD tools ./tools
 RUN yarn
 RUN ./node_modules/.bin/babel-node tools/run build --release
 
-# RUN rm -rf node_modules
+RUN rm -rf node_modules
 
 WORKDIR /usr/src/app/build
 
