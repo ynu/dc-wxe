@@ -18,7 +18,7 @@ export const sites = async () => {
   }
 };
 
-export const activeAlarm = async (siteUri) => {
+export const activeAlarm = async siteUri => {
   const url = `${fcApiHost}/site/${siteUri}/alarm/activeAlarm?token=${auth.fcApiToken}`;
   info('Read FC activeAlarm from Url:', url);
   try {
@@ -32,7 +32,7 @@ export const activeAlarm = async (siteUri) => {
   }
 };
 
-export const events = async (siteUri) => {
+export const events = async siteUri => {
   const url = `${fcApiHost}/site/${siteUri}/alarm/event?token=${auth.fcApiToken}`;
   info('Read FC event from Url:', url);
   try {
@@ -46,7 +46,7 @@ export const events = async (siteUri) => {
   }
 };
 
-export const historyAlarm = async (siteUri) => {
+export const historyAlarm = async siteUri => {
   const url = `${fcApiHost}/site/${siteUri}/alarm/historyAlarm?token=${auth.fcApiToken}`;
   info('Read FC historyAlarm from Url:', url);
   try {
@@ -62,7 +62,7 @@ export const historyAlarm = async (siteUri) => {
   }
 };
 
-export const clusters = async (siteUri) => {
+export const clusters = async siteUri => {
   const url = `${fcApiHost}/site/${siteUri}/cluster?token=${auth.fcApiToken}`;
   info('Read FC clusters from Url:', url);
   try {

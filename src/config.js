@@ -83,7 +83,7 @@ export const auth = {
 };
 // debug
 export const error = debug('dc-wxe:error');
-error.log = console.log.bind(console);
+// error.log = console.log.bind(console);
 
 export const info = debug('dc-wxe:info');
 // info.log = console.log.bind(console);
