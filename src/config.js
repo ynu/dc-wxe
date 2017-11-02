@@ -25,13 +25,6 @@ export const api = {
     `http://localhost:${process.env.PORT || 3000}`,
 };
 
-// 微信企业号
-export const wxent = {
-  corpId: process.env.WXE_CORPID,
-  secret: process.env.WXE_SECRET,
-  agentId: process.env.WXE_AGENTID || 28,
-};
-
 export const databaseUrl = process.env.DATABASE_URL || 'sqlite:database.sqlite';
 
 export const analytics = {
@@ -68,6 +61,25 @@ export const auth = {
       process.env.TWITTER_CONSUMER_SECRET ||
       'KTZ6cxoKnEakQCeSpZlaUCJWGAlTEBJj0y2EMkUBujA7zWSvaQ',
   },
+
+  // 微信企业号
+  wxent: {
+    corpId: process.env.WXE_CORPID,
+    secret: process.env.WXE_SECRET,
+    agentId: process.env.WXE_AGENTID || 28,
+  },
+
+  // lb-api token
+  lbApiToken: process.env.LB_API_TOKEN,
+
+  // fc-api token
+  fcApiToken: process.env.FC_API_TOKEN,
+
+  // zq-api token
+  zqApiToken: process.env.ZQ_API_TOKEN,
+
+  // imp-api token
+  impApiToken: process.env.IMP_API_TOKEN,
 };
 // debug
 export const error = debug('dc-wxe:error');
@@ -101,15 +113,3 @@ export const zqSupervisorTag = process.env.ZQ_SUPERVISOR_TAG_ID || 56;
 export const impApiHost =
   process.env.IMP_API_HOST || 'https://api.ynu.edu.cn/imp/v1';
 export const impSupervisorTag = process.env.IMP_SUPERVISOR_TAG_ID || 57;
-
-// lb-api token
-export const lbApiToken = process.env.LB_API_TOKEN;
-
-// fc-api token
-export const fcApiToken = process.env.FC_API_TOKEN;
-
-// zq-api token
-export const zqApiToken = process.env.ZQ_API_TOKEN;
-
-// imp-api token
-export const impApiToken = process.env.IMP_API_TOKEN;

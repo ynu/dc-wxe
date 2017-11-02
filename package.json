@@ -173,7 +173,9 @@
       "/build/public/",
       "/build/updates/",
       "/build/server.js"
-    ]
+    ],
+    "sourceMaps": true,
+    "retainLines": true
   },
   "lint-staged": {
     "*.{js,jsx}": [
