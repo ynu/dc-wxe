@@ -11,7 +11,7 @@ ADD src ./src
 ADD public ./public
 ADD tools ./tools
 
-RUN npm install
+RUN yarn
 RUN ./node_modules/.bin/babel-node tools/run build --release
 
 # RUN rm -rf node_modules
